@@ -94,7 +94,7 @@ namespace Transfer_data_from_csv
             List<string> listName = new List<string>();
             List<string> listEmail = new List<string>();
             List<string> listAnswer = new List<string>();
-            using (var reader = new StreamReader(@".\Answers5.csv"))
+            using (var reader = new StreamReader(@"Answers5.csv"))
             {
                
 
