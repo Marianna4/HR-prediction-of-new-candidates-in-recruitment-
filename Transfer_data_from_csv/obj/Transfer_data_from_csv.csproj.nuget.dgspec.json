@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\admin\\source\\repos\\Transfer_data_from_csv\\Transfer_data_from_csv.csproj": {}
+    "D:\\Diploma\\LocalRepo\\Transfer_data_from_csv\\Transfer_data_from_csv.csproj": {}
   },
   "projects": {
-    "C:\\Users\\admin\\source\\repos\\Transfer_data_from_csv\\Transfer_data_from_csv.csproj": {
+    "D:\\Diploma\\LocalRepo\\Transfer_data_from_csv\\Transfer_data_from_csv.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\admin\\source\\repos\\Transfer_data_from_csv\\Transfer_data_from_csv.csproj",
+        "projectUniqueName": "D:\\Diploma\\LocalRepo\\Transfer_data_from_csv\\Transfer_data_from_csv.csproj",
         "projectName": "Transfer_data_from_csv",
-        "projectPath": "C:\\Users\\admin\\source\\repos\\Transfer_data_from_csv\\Transfer_data_from_csv.csproj",
+        "projectPath": "D:\\Diploma\\LocalRepo\\Transfer_data_from_csv\\Transfer_data_from_csv.csproj",
         "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\admin\\source\\repos\\Transfer_data_from_csv\\obj\\",
+        "outputPath": "D:\\Diploma\\LocalRepo\\Transfer_data_from_csv\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
