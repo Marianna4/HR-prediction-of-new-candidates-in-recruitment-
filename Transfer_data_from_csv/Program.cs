@@ -11,6 +11,7 @@ namespace Transfer_data_from_csv
         //Connect to Account & choose table
         private static CloudTable AuthTable()
         {
+
             string accountName = "internsq42019";
             string accountKey = "wNEBN4s0BnC+IcrCtON2o5R1DDkgJre1oDMxjCSGao9+hgMsx7rgA4SNd7f7Uypo6VdqCqRYsR/AhyjfAS6reQ==";
             try
@@ -94,7 +95,7 @@ namespace Transfer_data_from_csv
             List<string> listName = new List<string>();
             List<string> listEmail = new List<string>();
             List<string> listAnswer = new List<string>();
-            using (var reader = new StreamReader(@"Answers5.csv"))
+            using (var reader = new StreamReader(@"D:\Diploma\LocalRepo\Answers5.csv"))
             {
                
 
