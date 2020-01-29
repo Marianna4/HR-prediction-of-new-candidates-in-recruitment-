@@ -4,26 +4,22 @@ using System.IO;
 using Transfer_data_from_csv.Services;
 using Transfer_data_from_csv.Entities;
 using Transfer_data_from_csv.Helpers;
+using System.Reflection;
+using System.Threading.Tasks;
 namespace Transfer_data_from_csv
 {
     class Program
     {
-       
-
-     
-        static void Main(string[] args)
-        {
-            
-
+        static async Task Main(string[] args)
+        {         
             var entities = new List<AnswerEntities>();
-
             using (var reader = new StreamReader(@"D:\Diploma\LocalRepo\Answers5.csv"))
             {
                 if (!reader.EndOfStream)
                 {
                     reader.ReadLine();
                 }
-                int i = 0;
+                
                 while (!reader.EndOfStream)
                 {
                     var line = reader.ReadLine();
@@ -43,12 +39,16 @@ namespace Transfer_data_from_csv
                  
                 }
 
+            }                                 
+            var dataService = new AnswerDataService();
+            try
+            {
+                await dataService.InsertData(entities, ConstantHelper.accountName, ConstantHelper.accountKey);
             }
-
-           
-
-            AnswerDataService.InsertData(entities,ConstantHelper.accountName,ConstantHelper.accountKey);
-
+            catch (Exception ex)
+            {
+                var v = ex;
+            }
             Console.WriteLine("Press any key");
             Console.ReadKey();
         }
