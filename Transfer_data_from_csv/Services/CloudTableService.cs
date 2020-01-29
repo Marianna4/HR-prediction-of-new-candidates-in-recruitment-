@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Auth;
 using Microsoft.WindowsAzure.Storage.Table;
-using Transfer_data_from_csv.Helpers;
+
 namespace Transfer_data_from_csv.Services
 {
    public class CloudTableService

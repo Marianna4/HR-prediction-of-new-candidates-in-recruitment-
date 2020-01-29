@@ -1,5 +1,4 @@
 ﻿using System;
-using Microsoft.WindowsAzure.Storage.Table;
 using System.Collections.Generic;
 using System.IO;
 using Transfer_data_from_csv.Services;

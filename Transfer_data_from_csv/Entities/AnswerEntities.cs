@@ -1,6 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+
 using Microsoft.WindowsAzure.Storage.Table;
 
 namespace Transfer_data_from_csv.Entities
