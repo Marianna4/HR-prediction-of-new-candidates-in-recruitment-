@@ -13,11 +13,11 @@ namespace Transfer_data_from_csv.Services
             var response = client.ExtractKeyPhrases(Text);
             string keyPH="";
             // Printing key phrases
-            Console.WriteLine("Key phrases:");
+            //Console.WriteLine("Key phrases:");
 
             foreach (string keyphrase in response.Value.KeyPhrases)
             {
-                Console.WriteLine($"\t{keyphrase}");
+                //Console.WriteLine($"\t{keyphrase}");
                 keyPH = keyPH + keyphrase+", ";
             }
             return keyPH;
@@ -26,8 +26,8 @@ namespace Transfer_data_from_csv.Services
         {
             var response = client.DetectLanguage(Text);
             var detectedLanguage = response.Value.PrimaryLanguage;
-            Console.WriteLine("Language:");
-            Console.WriteLine($"\t{detectedLanguage.Name},\tISO-6391: {detectedLanguage.Iso6391Name}\n");
+           // Console.WriteLine("Language:");
+           // Console.WriteLine($"\t{detectedLanguage.Name},\tISO-6391: {detectedLanguage.Iso6391Name}\n");
 
             return detectedLanguage.Name;
         }
@@ -35,14 +35,14 @@ namespace Transfer_data_from_csv.Services
         {
             var response = client.AnalyzeSentiment(Text);
             var sent = 0.0;
-            Console.WriteLine($"Document sentiment: {response.Value.DocumentSentiment.SentimentClass}\n");
+           // Console.WriteLine($"Document sentiment: {response.Value.DocumentSentiment.SentimentClass}\n");
             foreach (var sentence in response.Value.SentenceSentiments)
             {
-                Console.WriteLine($"\tSentence [offset {sentence.Offset}, length {sentence.Length}]");
-                Console.WriteLine($"\tSentence sentiment: {sentence.SentimentClass}");
-                Console.WriteLine($"\tPositive score: {sentence.PositiveScore:0.00}");
-                Console.WriteLine($"\tNegative score: {sentence.NegativeScore:0.00}");
-                Console.WriteLine($"\tNeutral score: {sentence.NeutralScore:0.00}\n");
+                //Console.WriteLine($"\tSentence [offset {sentence.Offset}, length {sentence.Length}]");
+                //Console.WriteLine($"\tSentence sentiment: {sentence.SentimentClass}");
+                //Console.WriteLine($"\tPositive score: {sentence.PositiveScore:0.00}");
+                //Console.WriteLine($"\tNegative score: {sentence.NegativeScore:0.00}");
+                //Console.WriteLine($"\tNeutral score: {sentence.NeutralScore:0.00}\n");
                 if (sentence.PositiveScore > sentence.NegativeScore) sent = (sentence.PositiveScore);
                 else sent = sentence.NegativeScore * -1;
             }

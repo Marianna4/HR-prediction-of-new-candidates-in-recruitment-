@@ -3,10 +3,9 @@ using Microsoft.WindowsAzure.Storage.Table;
 
 namespace Transfer_data_from_csv.Entities
 {
-    public class AnalyzedDatesEntities : TableEntity
+
+    public class AnalyzedDatasEntities : TableEntity
     {
-        public string PartitionKey { get; set; }
-        public string RowKey { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
         public bool IsProcessed { get; set; }
@@ -16,6 +15,7 @@ namespace Transfer_data_from_csv.Entities
         public string Q1KeyPhrases { get; set; }
         public double Q1Sentiment { get; set; }
         public string Q1ProfanityTerms { get; set; }
-
     }
+    
+
 }
