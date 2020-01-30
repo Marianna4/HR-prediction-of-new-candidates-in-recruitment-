@@ -2,6 +2,7 @@
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Auth;
 using Microsoft.WindowsAzure.Storage.Table;
+using Transfer_data_from_csv.Helpers;
 
 
 
@@ -21,10 +22,10 @@ namespace Transfer_data_from_csv.Services
 
 
 
-        public CloudTable GetAuthTable(string accountName, string accountKey)
+        public CloudTable GetAuthTable(string accountName, string accountKey,string tableName)
         {
             CloudTableClient client = CreateCloudTableClient(accountName, accountKey);
-            return client?.GetTableReference("PreliminaryData");
+            return client?.GetTableReference( tableName);
         }
     }
 

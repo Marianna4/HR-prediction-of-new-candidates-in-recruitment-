@@ -18,7 +18,7 @@ namespace Transfer_data_from_csv
             var dataService = new AnswerDataService();
             try
             {
-                await dataService.InsertData(entities, ConstantHelper.accountName, ConstantHelper.accountKey);
+                await dataService.InsertData(entities, ConstantHelper.accountName, ConstantHelper.accountKey,ConstantHelper.firstTrableName);
             }
             catch (Exception ex)
             {
@@ -42,11 +42,37 @@ namespace Transfer_data_from_csv
             //                             data.Name, data.Answer, data.Email);
             //}
             ///Work with cognitiveServices
+            
             var client = new TextAnalyticsClient (ConstantHelper.endpoint, ConstantHelper.key);
             var analysText = new TextAnalysicService();
-          //  analysText.languageDetectionExample(client, DataTable[0].Answer);
-            analysText.SentimentAnalysisExample(client, DataTable[0].Answer);
-            analysText.KeyPhraseExtractionExample(client, DataTable[0].Answer);
+            var processedData = new List<AnalyzedDatesEntities>();
+            for (int i = 0; i < DataTable.Count; i++)
+            {
+                var tempEntity = new AnalyzedDatesEntities()
+                {
+                    PartitionKey = DataTable[i].PartitionKey,
+                    RowKey = DataTable[i].RowKey,
+                    Name = DataTable[i].Name,
+                    Email = DataTable[i].Email,
+                    Q1Reply = DataTable[i].Answer,
+                    IsProcessed = true,      
+                    Q1Lenghth= DataTable[i].Answer.Length,
+                    Q1Language = analysText.LanguageDetectionExample(client, DataTable[i].Answer),
+                    Q1Sentiment=analysText.SentimentAnalysisExample(client, DataTable[i].Answer),
+                    Q1KeyPhrases= analysText.KeyPhraseExtractionExample(client, DataTable[i].Answer) 
+                };
+                processedData.Add(tempEntity);
+
+            }
+            try
+            {
+              await dataService.InsertData(processedData, ConstantHelper.accountName, ConstantHelper.accountKey,ConstantHelper.secondTableName);
+            }
+            catch (Exception ex)
+            {
+                var v = ex;
+            }
+
             Console.WriteLine("Press any key");
             Console.ReadKey();
         }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Transfer_data_from_csv.Entities;
 using Microsoft.WindowsAzure.Storage.Table;
 using System.Threading.Tasks;
+using Transfer_data_from_csv.Helpers;
 
 
 
@@ -14,7 +15,7 @@ namespace Transfer_data_from_csv.Services
         {
             var DataList = new List<AnswerEntities>();
             var tableService = new CloudTableService();
-            var table = tableService.GetAuthTable(accountName, accountKey);
+            var table = tableService.GetAuthTable(accountName, accountKey, ConstantHelper.firstTrableName);
             var condition = TableQuery.GenerateFilterConditionForBool("IsProcessed", QueryComparisons.Equal, false);
             var query = new TableQuery<AnswerEntities>().Where(condition);
             TableContinuationToken token = null;

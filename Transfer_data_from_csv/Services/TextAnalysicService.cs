@@ -8,37 +8,33 @@ namespace Transfer_data_from_csv.Services
 {
     class TextAnalysicService
     {
-        public void KeyPhraseExtractionExample(Azure.AI.TextAnalytics.TextAnalyticsClient client, string Text)
+        public string KeyPhraseExtractionExample(Azure.AI.TextAnalytics.TextAnalyticsClient client, string Text)
         {
             var response = client.ExtractKeyPhrases(Text);
-
+            string keyPH="";
             // Printing key phrases
             Console.WriteLine("Key phrases:");
 
             foreach (string keyphrase in response.Value.KeyPhrases)
             {
                 Console.WriteLine($"\t{keyphrase}");
+                keyPH = keyPH + keyphrase+", ";
             }
+            return keyPH;
         }
-        public string languageDetectionExample(ITextAnalyticsClient client, string Text)
+        public string LanguageDetectionExample(Azure.AI.TextAnalytics.TextAnalyticsClient client,string Text)
         {
+            var response = client.DetectLanguage(Text);
+            var detectedLanguage = response.Value.PrimaryLanguage;
+            Console.WriteLine("Language:");
+            Console.WriteLine($"\t{detectedLanguage.Name},\tISO-6391: {detectedLanguage.Iso6391Name}\n");
 
-            try
-            {
-                var result = client.DetectLanguage(Text);
-                Console.WriteLine($"Language: {result.DetectedLanguages[0].Name}");
-                return result.DetectedLanguages[0].Name;
-            }
-            catch (Exception e)
-            {
-                var eror = e;
-                Console.WriteLine(eror.Message);
-                return eror.Message;
-            }
+            return detectedLanguage.Name;
         }
-        public void SentimentAnalysisExample(Azure.AI.TextAnalytics.TextAnalyticsClient client, string Text)
+        public double SentimentAnalysisExample(Azure.AI.TextAnalytics.TextAnalyticsClient client, string Text)
         {
             var response = client.AnalyzeSentiment(Text);
+            var sent = 0.0;
             Console.WriteLine($"Document sentiment: {response.Value.DocumentSentiment.SentimentClass}\n");
             foreach (var sentence in response.Value.SentenceSentiments)
             {
@@ -47,7 +43,10 @@ namespace Transfer_data_from_csv.Services
                 Console.WriteLine($"\tPositive score: {sentence.PositiveScore:0.00}");
                 Console.WriteLine($"\tNegative score: {sentence.NegativeScore:0.00}");
                 Console.WriteLine($"\tNeutral score: {sentence.NeutralScore:0.00}\n");
+                if (sentence.PositiveScore > sentence.NegativeScore) sent = (sentence.PositiveScore);
+                else sent = sentence.NegativeScore * -1;
             }
+            return sent;
         }
     }
 }
