@@ -1,39 +1,36 @@
 ﻿using System;
 using System.Collections.Generic;
-using Transfer_Data_To_Cognitive_Service.Entities;
+using Transfer_data_from_csv.Entities;
 using Microsoft.WindowsAzure.Storage.Table;
 using System.Threading.Tasks;
 
 
-namespace Transfer_Data_To_Cognitive_Service.Services
+
+namespace Transfer_data_from_csv.Services
 {
     class DataFromTableService
     {
-        public async Task<bool> OutputData(List<EntitiesFromTable> DataList, string accountName, string accountKey)
+        public async Task<List<AnswerEntities>> OutputData( string accountName, string accountKey)
         {
+            var DataList = new List<AnswerEntities>();
             var tableService = new CloudTableService();
-            var table = tableService.GetAuthTable(accountName, accountKey);           
+            var table = tableService.GetAuthTable(accountName, accountKey);
             var condition = TableQuery.GenerateFilterConditionForBool("IsProcessed", QueryComparisons.Equal, false);
-            var query = new TableQuery<EntitiesFromTable>().Where(condition);
+            var query = new TableQuery<AnswerEntities>().Where(condition);
             TableContinuationToken token = null;
             do
-            {               
+            {
                 var segment = await table.ExecuteQuerySegmentedAsync(query, token);
-                foreach (EntitiesFromTable entity in segment)
-                {                    
+                foreach (AnswerEntities entity in segment)
+                {
                     DataList.Add(entity);
-                }                
+                }
                 token = segment.ContinuationToken;
             }
-            while (token != null);       
+            while (token != null);
 
-            return true;
+            return DataList;
         }
 
     }
 }
-
-
-
-
-
