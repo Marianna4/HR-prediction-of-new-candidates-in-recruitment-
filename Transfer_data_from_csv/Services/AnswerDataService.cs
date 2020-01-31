@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using Transfer_data_from_csv.Entities;
 using Microsoft.WindowsAzure.Storage.Table;
 using System.Threading.Tasks;
-using Transfer_data_from_csv.Helpers;
 namespace Transfer_data_from_csv.Services
 {
     class AnswerDataService
@@ -17,18 +15,9 @@ namespace Transfer_data_from_csv.Services
             for (int i = 0; i < entities.Count; i++)
             {
                 var insert = TableOperation.InsertOrReplace(entities[i]);
-
-
-
                 tablesBatch.Add(insert);
             }
-
-
-
             await table.ExecuteBatchAsync(tablesBatch);
-
-
-
             return true;
         }
     }

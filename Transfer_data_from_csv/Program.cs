@@ -4,9 +4,6 @@ using Transfer_data_from_csv.Services;
 using Transfer_data_from_csv.Entities;
 using Transfer_data_from_csv.Helpers;
 using System.Threading.Tasks;
-using Azure.AI.TextAnalytics;
-using Microsoft.Azure.CognitiveServices.ContentModerator;
-
 
 namespace Transfer_data_from_csv
 {
@@ -14,10 +11,9 @@ namespace Transfer_data_from_csv
     {
         static async Task Main(string[] args)
         { 
-            //Read from file
+            //Reading from file
             ReadFromFile CsvFile = new ReadFromFile();
-            var entities= CsvFile.FileReading() ;
-                             
+            var entities= CsvFile.FileReading() ;                             
             var dataService = new AnswerDataService();
             try
             {
@@ -39,14 +35,6 @@ namespace Transfer_data_from_csv
             {
                 var v = ex;
             }
-            //foreach (AnswerEntities data in DataTable)
-            //{
-            //    Console.WriteLine("{0}, {1}\t{2}\t{3}\t{4}",data.PartitionKey, data.RowKey,
-            //                             data.Name, data.Answer, data.Email);
-            //}
-            ///Work with cognitiveServices
-            
-            
             
             var templInsert =new InsertAnalizedDatas();
             var processedData = templInsert.InserTAfterAnalized(DataTable);

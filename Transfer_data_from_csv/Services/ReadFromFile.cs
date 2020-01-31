@@ -7,8 +7,7 @@ namespace Transfer_data_from_csv.Services
     class ReadFromFile
     {
        public List<AnswerEntities> FileReading()
-        {
-            
+        {           
             var entities = new List<AnswerEntities>();
             Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Answers5.csv");
             using (var reader = new StreamReader(@"Answers5.csv"))
@@ -17,12 +16,10 @@ namespace Transfer_data_from_csv.Services
                 {
                     reader.ReadLine();
                 }
-
                 while (!reader.EndOfStream)
                 {
                     var line = reader.ReadLine();
                     var values = line.Split(';');
-
                     var newEntity = new AnswerEntities()
                     {
                         PartitionKey = values[0],
@@ -34,9 +31,7 @@ namespace Transfer_data_from_csv.Services
                     };
 
                     entities.Add(newEntity);
-
                 }
-
             }
             return entities;
         }

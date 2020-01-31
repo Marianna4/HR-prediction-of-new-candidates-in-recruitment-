@@ -3,7 +3,6 @@ using Microsoft.WindowsAzure.Storage.Table;
 
 namespace Transfer_data_from_csv.Entities
 {
-
     public class AnalyzedDatasEntities : TableEntity
     {
         public string Name { get; set; }
