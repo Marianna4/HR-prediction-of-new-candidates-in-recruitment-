@@ -14,7 +14,6 @@ namespace Transfer_data_from_csv.Entities
         public string Q1KeyPhrases { get; set; }
         public double Q1Sentiment { get; set; }
         public string Q1ProfanityTerms { get; set; }
-    }
-    
+    } 
 
 }

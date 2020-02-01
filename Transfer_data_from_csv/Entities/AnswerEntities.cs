@@ -9,6 +9,5 @@ namespace Transfer_data_from_csv.Entities
         public string Email { get; set; }
         public string Answer { get; set; }
         public bool IsProcessed { get; set; }
-
       }
 }
