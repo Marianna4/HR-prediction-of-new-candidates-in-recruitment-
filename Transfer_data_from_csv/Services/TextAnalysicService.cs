@@ -33,14 +33,15 @@ namespace Transfer_data_from_csv.Services
             var sent = 0.0;
             foreach (var sentence in response.Value.SentenceSentiments)
             {
-                if (sentence.PositiveScore > sentence.NegativeScore) sent = (sentence.PositiveScore);
-                else sent = sentence.NegativeScore * -1;
+                if (sentence.SentimentClass.ToString()== "Positive") sent = sentence.PositiveScore;
+                if (sentence.SentimentClass.ToString() == "Neutural") sent =0.0;
+                if (sentence.SentimentClass.ToString() == "Negative") sent = 1 - sentence.NegativeScore;
+                else sent = 0.5;
             }
             return sent;
         }
         public string ModerateText(ContentModeratorClient client, string Text)
         {  
-            Console.WriteLine();
             Text = Text.Replace(Environment.NewLine, " ");
             byte[] textBytes = Encoding.UTF8.GetBytes(Text);
             MemoryStream stream = new MemoryStream(textBytes);
@@ -52,16 +53,11 @@ namespace Transfer_data_from_csv.Services
                     ContentModeratorClient clientText = new ContentModeratorClient(new ApiKeyServiceClientCredentials(ConstantHelper.ApiKey));
                     clientText.Endpoint = ConstantHelper.endpoint.OriginalString;
 
-                    var screenResult = clientText.TextModeration.ScreenText("text/plain", stream, "eng", true, true, null, true);
+                    var screenResult = clientText.TextModeration.ScreenText("text/plain", stream, "eng", false, false, null, true);
                    
-                   var templ= JsonConvert.SerializeObject(screenResult, Newtonsoft.Json.Formatting.Indented);
-                    
-                    templ = templ.ToString();
-                    int wordLen=7;                    
-                   int start = templ.IndexOf("Terms")+ wordLen;
-                   int end = templ.IndexOf("TrackingId");
-                    string Terms=templ.Substring(start,end-start-3);
-                    return Terms;
+                   var templ= JsonConvert.SerializeObject(screenResult.Terms, Newtonsoft.Json.Formatting.Indented);
+                  
+                    return templ.ToString();
                 }
                 catch (Exception ex)
                 {
