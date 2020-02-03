@@ -35,13 +35,35 @@ namespace Transfer_data_from_csv.Services
                     RowKey = DataTable[i].RowKey,
                     Name = DataTable[i].Name,
                     Email = DataTable[i].Email,
-                    Q1Reply = DataTable[i].Answer,
                     IsProcessed = true,
-                    Q1Lenghth = DataTable[i].Answer.Length,
-                    Q1Language = analysText.LanguageDetectionExample(client, DataTable[i].Answer),
-                    Q1Sentiment = analysText.SentimentAnalysisExample(client, DataTable[i].Answer),
-                    Q1KeyPhrases = analysText.KeyPhraseExtractionExample(client, DataTable[i].Answer),
-                    Q1ProfanityTerms = analysText.ModerateText(clientText, DataTable[i].Answer)
+                    Q1Reply = DataTable[i].Answer1,                  
+                    Q1Lenghth = DataTable[i].Answer1.Length,
+                    Q1Language = analysText.LanguageDetectionExample(client, DataTable[i].Answer1),
+                    Q1Sentiment = analysText.SentimentAnalysisExample(client, DataTable[i].Answer1),
+                    Q1KeyPhrases = analysText.KeyPhraseExtractionExample(client, DataTable[i].Answer1),
+                    Q1ProfanityTerms = analysText.ModerateText(clientText, DataTable[i].Answer1),
+
+                    Q2Reply = DataTable[i].Answer2,
+                    Q2Lenghth = DataTable[i].Answer2.Length,
+                    Q2Language = analysText.LanguageDetectionExample(client, DataTable[i].Answer2),
+                    Q2Sentiment = analysText.SentimentAnalysisExample(client, DataTable[i].Answer2),
+                    Q2KeyPhrases = analysText.KeyPhraseExtractionExample(client, DataTable[i].Answer2),
+                    Q2ProfanityTerms = analysText.ModerateText(clientText, DataTable[i].Answer2),
+
+                    Q3Reply = DataTable[i].Answer3,
+                    Q3Lenghth = DataTable[i].Answer3.Length,
+                    Q3Language = analysText.LanguageDetectionExample(client, DataTable[i].Answer3),
+                    Q3Sentiment = analysText.SentimentAnalysisExample(client, DataTable[i].Answer3),
+                    Q3KeyPhrases = analysText.KeyPhraseExtractionExample(client, DataTable[i].Answer3),
+                    Q3ProfanityTerms = analysText.ModerateText(clientText, DataTable[i].Answer3),
+
+                    Q4Reply = DataTable[i].Answer4,
+                    Q4Lenghth = DataTable[i].Answer4.Length,
+                    Q4Language = analysText.LanguageDetectionExample(client, DataTable[i].Answer4),
+                    Q4Sentiment = analysText.SentimentAnalysisExample(client, DataTable[i].Answer4),
+                    Q4KeyPhrases = analysText.KeyPhraseExtractionExample(client, DataTable[i].Answer4),
+                    Q4ProfanityTerms = analysText.ModerateText(clientText, DataTable[i].Answer4),
+
                 };
                 processedData.Add(tempEntity);
             }

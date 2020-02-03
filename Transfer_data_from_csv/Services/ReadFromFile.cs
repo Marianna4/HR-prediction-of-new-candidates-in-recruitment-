@@ -26,7 +26,10 @@ namespace Transfer_data_from_csv.Services
                         RowKey = values[1],
                         Name = values[2],
                         Email = values[3],
-                        Answer = values[4],
+                        Answer1 = values[4],
+                        Answer2 = values[5],
+                        Answer3 = values[6],
+                        Answer4 = values[7],
                         IsProcessed = false
                     };
 
