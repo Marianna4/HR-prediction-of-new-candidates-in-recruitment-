@@ -63,6 +63,7 @@ namespace Transfer_data_from_csv.Services
                     Q4Sentiment = analysText.SentimentAnalysisExample(client, DataTable[i].Answer4),
                     Q4KeyPhrases = analysText.KeyPhraseExtractionExample(client, DataTable[i].Answer4),
                     Q4ProfanityTerms = analysText.ModerateText(clientText, DataTable[i].Answer4),
+                    ManuallyEvalutate=0
 
                 };
                 processedData.Add(tempEntity);

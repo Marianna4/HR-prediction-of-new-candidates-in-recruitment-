@@ -32,6 +32,8 @@ namespace Transfer_data_from_csv.Entities
         public string Q4KeyPhrases { get; set; }
         public double Q4Sentiment { get; set; }
         public string Q4ProfanityTerms { get; set; }
+        public int ManuallyEvalutate { get; set; }
+
     } 
 
 }

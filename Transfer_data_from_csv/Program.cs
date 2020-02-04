@@ -17,7 +17,7 @@ namespace Transfer_data_from_csv
             var dataService = new AnswerDataService();
             try
             {
-                await dataService.InsertData(entities, ConstantHelper.accountName, ConstantHelper.accountKey, ConstantHelper.firstTrableName);
+                await dataService.InsertData(entities, ConstantHelper.accountName, ConstantHelper.accountKey, ConstantHelper.firstTableName);
             }
             catch (Exception ex)
             {
@@ -29,7 +29,7 @@ namespace Transfer_data_from_csv
             var DataTable = new List<AnswerEntities>();
             try
             {
-                DataTable = await tableData.OutputData(ConstantHelper.accountName, ConstantHelper.accountKey);
+                DataTable = await tableData.OutputData<AnswerEntities>(ConstantHelper.accountName, ConstantHelper.accountKey,ConstantHelper.firstTableName);
             }
             catch (Exception ex)
             {
@@ -47,7 +47,22 @@ namespace Transfer_data_from_csv
             {
                 var v = ex;
             }
-            Console.WriteLine("Press any key");
+
+            //write to csv file data from table FinnalyData
+
+            var DataToCSV = new List<AnalyzedDatasEntities>();
+            try
+            {
+                DataToCSV = await tableData.OutputData<AnalyzedDatasEntities>(ConstantHelper.accountName, ConstantHelper.accountKey, ConstantHelper.secondTableName);
+            }
+            catch (Exception ex)
+            {
+                var v = ex;
+            }
+
+            var FileWriter = new WriteToFile();
+            FileWriter.WriteToCSV(DataToCSV);
+        Console.WriteLine("Press any key");
             Console.ReadKey();
         }
 

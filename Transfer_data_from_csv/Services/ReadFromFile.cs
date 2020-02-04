@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using Transfer_data_from_csv.Entities;
 using System.Reflection;
-using System.Collections.Generic;
+using System.Collections.Generic; 
 namespace Transfer_data_from_csv.Services
 {
     class ReadFromFile

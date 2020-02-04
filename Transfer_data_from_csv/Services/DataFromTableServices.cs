@@ -11,18 +11,27 @@ namespace Transfer_data_from_csv.Services
 {
     class DataFromTableService
     {
-        public async Task<List<AnswerEntities>> OutputData( string accountName, string accountKey)
+        public async Task<List<T>> OutputData<T>( string accountName, string accountKey,string tableName)where T:TableEntity, new()
         {
-            var DataList = new List<AnswerEntities>();
+            
+            var DataList = new List<T>();
             var tableService = new CloudTableService();
-            var table = tableService.GetAuthTable(accountName, accountKey, ConstantHelper.firstTrableName);
-            var condition = TableQuery.GenerateFilterConditionForBool("IsProcessed", QueryComparisons.Equal, false);
-            var query = new TableQuery<AnswerEntities>().Where(condition);
+            var table = tableService.GetAuthTable(accountName, accountKey, tableName);
+            var condition = "";
+            if (tableName == "PreliminaryData")
+            {
+                condition = TableQuery.GenerateFilterConditionForBool("IsProcessed", QueryComparisons.Equal, false);
+            }
+            else
+            {
+                condition = TableQuery.GenerateFilterConditionForInt("ManuallyEvalutate", QueryComparisons.Equal, 0);
+            }
+            var query = new TableQuery<T>().Where(condition);
             TableContinuationToken token = null;
             do
             {
                 var segment = await table.ExecuteQuerySegmentedAsync(query, token);
-                foreach (AnswerEntities entity in segment)
+                foreach (T entity in segment)
                 {
                     DataList.Add(entity);
                 }

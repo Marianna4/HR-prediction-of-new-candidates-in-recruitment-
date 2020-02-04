@@ -7,6 +7,7 @@
 
   <ItemGroup>
     <PackageReference Include="Azure.AI.TextAnalytics" Version="1.0.0-preview.1" />
+    <PackageReference Include="CsvHelper" Version="14.0.0" />
     <PackageReference Include="Microsoft.Azure.CognitiveServices.ContentModerator" Version="2.0.0" />
     <PackageReference Include="Microsoft.Azure.CognitiveServices.Language.TextAnalytics" Version="4.0.0" />
     <PackageReference Include="Microsoft.Azure.Management.BatchAI.Fluent" Version="1.30.0" />
@@ -19,6 +20,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="AnalizedData.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Answers5.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

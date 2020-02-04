@@ -12,7 +12,7 @@ namespace Transfer_data_from_csv.Helpers
         public const string ApiKey = "6cd3a7ed602548ef9a0c7eacaff6aea1";
         public const string APIURI = "https://westeurope.api.cognitive.microsoft.com/";
 
-        public const string firstTrableName = "PreliminaryData";
+        public const string firstTableName = "PreliminaryData";
         public const string secondTableName = "FinnalyData";
     }
 }
